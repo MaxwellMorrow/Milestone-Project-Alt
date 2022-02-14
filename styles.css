@@ -1,0 +1,9 @@
+
+
+#game-container{
+    background-color: aqua;
+    width: 100vmin;
+    height: 100vmin;
+    display: grid;
+    grid-template-columns: 3 1fr;
+}
