@@ -45,8 +45,14 @@ body{
     height: var(--square-size);
     /* this is our initial border to create the Tic-Tac-Toe feel */
     border: 1px solid black;
-    
 
+    /* this allows our marks to be centered in the squares */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* this combined with line 91 get the X to align properly */
+    position: relative;
+    cursor: pointer;
 }
 
 /* removes top border for our first three squares */
@@ -81,7 +87,67 @@ body{
     content: "";
     width: calc(var(--mark-size) * .15);
     height: var(--mark-size);
+    background-color: black;
+    /* helps the X align properly */
+    position: absolute;
+}
+/* this combined with the after below form the X on the game board  */
+/* both start as simple lines that are rotated 45 degrees in opposite directions */
+.square.x::before{
+    transform: rotate(45deg);
+}
+.square.x::after{
+    transform: rotate(-45deg);
+}
+
+
+.square.circle::before,
+.square.circle::after{
+     /* the above pseudo selectors do not function without some content */
+     content: "";
+     border-radius: 50%;
+     position: absolute;
+}
+
+/* using some fancy CSS to create a circle out of two circles one being slighty smaller than the other */
+.square.circle::before{
+    width: var(--mark-size);
+    height: var(--mark-size);
+    background-color: black;
+}
+/* Order here is important the white circle is put on after the black circle to create the right look */
+.square.circle::after{
+    width: calc(var(--mark-size) * .6);
+    height: calc(var(--mark-size)* .6);
+    background-color: white;
+}
+
+.square.circle,
+.square.x{
+    /* this prevents the cursor from showing up on squares we have put a mark on */
+    cursor: not-allowed;
+}
+
+.win-message{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0, .7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    color:white;
+    font-size: 5rem;
+    flex-direction: column;
 
 }
-    
-
+.win-message button{
+    font-size: xx-large;
+    background-color: white;
+    cursor: pointer;
+}
+.win-message.show{
+    display: flex;
+}
