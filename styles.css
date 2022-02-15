@@ -6,7 +6,7 @@
 
 :root {
     /* these are custom variables very fun to use can make code easier to alter quickly */
-    --square-size: 100px;
+    --square-size: 200px;
     /* this makes the marks slightly smaller than the square size */
     --mark-size: calc(var(--square-size) * .9)
 }
@@ -127,7 +127,7 @@ body{
     /* this prevents the cursor from showing up on squares we have put a mark on */
     cursor: not-allowed;
 }
-
+/* by default with display none our win message is hidden */
 .win-message{
     position: fixed;
     top: 0;
@@ -140,14 +140,17 @@ body{
     align-items: center;
     color:white;
     font-size: 5rem;
+    /* this stacks our text on top of our restart button */
     flex-direction: column;
 
 }
+/* adding some styles to our win message button */
 .win-message button{
     font-size: xx-large;
     background-color: white;
     cursor: pointer;
 }
+/* by adding the class "show" to our win message div we can make our win message appear */
 .win-message.show{
     display: flex;
 }

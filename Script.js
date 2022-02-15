@@ -49,7 +49,7 @@ function turnSwap(){
 }
 function winCheck(currentClass){
     // checking all the win conditions in the array if .some returns true if ANY win conditions are met
-    WIN_CONDITIONS.some(combination => {
+    return WIN_CONDITIONS.some(combination => {
         return combination.every(index => {
             // checking our combinations to see if there is a matching class in the correct combination
             return squareElements[index].classList.contains(currentClass)
