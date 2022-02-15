@@ -1,10 +1,87 @@
 
+/* this selects essentially everything */
+*, *::after, *::before{
+    box-sizing: border-box;
+}
+
+:root {
+    /* these are custom variables very fun to use can make code easier to alter quickly */
+    --square-size: 100px;
+    /* this makes the marks slightly smaller than the square size */
+    --mark-size: calc(var(--square-size) * .9)
+}
+
+
+
+/* removing margins to make things easier to position */
+body{
+    margin: 0;
+}
+
 
 #game-container{
-    background-color: aqua;
-    width: 100vmin;
-    height: 100vmin;
+    
+    /* makes the board take up the entire screen */
+    width: 100vw;
+    height: 100vh;
+    /* Using grid to create our game board I <3 grid */
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-columns: repeat(3, 1fr);
+    /* these lines center our grid the the middle of our screen */
+    justify-content: center;
+    align-content: center;
+    
+
+    grid-template-columns: repeat(3, auto);
+    grid-template-columns: repeat(3, auto);
+
+    /* aligns items inside of our squares to the center of our squares */
+    justify-items: center;
+    align-items: center;
 }
+
+.square {
+    /* setting size of ea */
+    width: var(--square-size);
+    height: var(--square-size);
+    /* this is our initial border to create the Tic-Tac-Toe feel */
+    border: 1px solid black;
+    
+
+}
+
+/* removes top border for our first three squares */
+#square1,
+#square2,
+#square3{
+    border-top: none;
+}
+/* removes border from the left squares */
+#square1,
+#square4,
+#square7{
+    border-left: none;
+}
+/* removes border from the right squares */
+#square3,
+#square6,
+#square9{
+    border-right: none;
+}
+/* removes border from the bottom */
+#square7,
+#square8,
+#square9{
+    border-bottom: none;
+}
+
+
+.square.x::before,
+.square.x::after{
+    /* the above pseudo selectors do not function without some content */
+    content: "";
+    width: calc(var(--mark-size) * .15);
+    height: var(--mark-size);
+
+}
+    
+
