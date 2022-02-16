@@ -29,9 +29,8 @@ body{
     /* these lines center our grid the the middle of our screen */
     justify-content: center;
     align-content: center;
+  
     
-    /* sets up the grid for 3x3 with automatic spacing  */
-    grid-template-columns: repeat(3, auto);
     grid-template-columns: repeat(3, auto);
 
     /* aligns items inside of our squares to the center of our squares */
