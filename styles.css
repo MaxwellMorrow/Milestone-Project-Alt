@@ -6,7 +6,7 @@
 
 :root {
     /* these are custom variables very fun to use can make code easier to alter quickly */
-    --square-size: 200px;
+    --square-size: 300px;
     /* this makes the marks slightly smaller than the square size */
     --mark-size: calc(var(--square-size) * .9)
 }
@@ -30,7 +30,7 @@ body{
     justify-content: center;
     align-content: center;
   
-    
+    /* this sets up the 3x3 board  */
     grid-template-columns: repeat(3, auto);
 
     /* aligns items inside of our squares to the center of our squares */

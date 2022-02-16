@@ -30,6 +30,7 @@ squareElements.forEach(square =>{
 })
 // when we click a square we place a mark, check for win and swap turns 
 function squareClick(e){
+    // makes our click target the square we are over
     const square = e.target
     // this is a ternary first checks for if xturn is true if not then it uses Circle class 
     const currentClass = xturn ? X_CLASS : CIRCLE_CLASS
@@ -37,6 +38,7 @@ function squareClick(e){
     if(winCheck(currentClass)){
         console.log("winner")
     }
+    // swaps after we place a mark 
     turnSwap()
 
 }

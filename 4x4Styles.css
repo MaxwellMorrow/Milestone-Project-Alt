@@ -1,0 +1,160 @@
+
+/* this selects essentially everything */
+*, *::after, *::before{
+    box-sizing: border-box;
+}
+
+:root {
+    /* these are custom variables very fun to use can make code easier to alter quickly */
+    --square-size: 200px;
+    /* this makes the marks slightly smaller than the square size */
+    --mark-size: calc(var(--square-size) * .9)
+}
+
+
+
+/* removing margins to make things easier to position */
+body{
+    margin: 0;
+}
+
+
+#game-container{
+    
+    /* makes the board take up the entire screen */
+    width: 100vw;
+    height: 100vh;
+    /* Using grid to create our game board I <3 grid */
+    display: grid;
+    /* these lines center our grid the the middle of our screen */
+    justify-content: center;
+    align-content: center;
+  
+    /* this sets up the 3x3 board  */
+    grid-template-columns: repeat(4, auto);
+
+    /* aligns items inside of our squares to the center of our squares */
+    justify-items: center;
+    align-items: center;
+}
+
+.square {
+    /* setting size of ea */
+    width: var(--square-size);
+    height: var(--square-size);
+    /* this is our initial border to create the Tic-Tac-Toe feel */
+    border: 1px solid black;
+
+    /* this allows our marks to be centered in the squares */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* this combined with line 91 get the X to align properly */
+    position: relative;
+    cursor: pointer;
+}
+
+/* removes top border for our first three squares */
+#square1,
+#square2,
+#square3,
+#square4{
+    border-top: none;
+}
+/* removes border from the left squares */
+#square1,
+#square5,
+#square9,
+#square13{
+    border-left: none;
+}
+/* removes border from the right squares */
+#square4,
+#square8,
+#square12,
+#square16{
+    border-right: none;
+}
+/* removes border from the bottom */
+#square13,
+#square14,
+#square15,
+#square16{
+    border-bottom: none;
+}
+
+
+.square.x::before,
+.square.x::after{
+    /* the above pseudo selectors do not function without some content */
+    content: "";
+    width: calc(var(--mark-size) * .15);
+    height: var(--mark-size);
+    background-color: black;
+    /* helps the X align properly */
+    position: absolute;
+}
+/* this combined with the after below form the X on the game board  */
+/* both start as simple lines that are rotated 45 degrees in opposite directions */
+.square.x::before{
+    transform: rotate(45deg);
+}
+.square.x::after{
+    transform: rotate(-45deg);
+}
+
+
+.square.circle::before,
+.square.circle::after{
+     /* the above pseudo selectors do not function without some content */
+     content: "";
+     /* this makes our marks circles */
+     border-radius: 50%;
+     position: absolute;
+}
+
+/* using some fancy CSS to create a circle out of two circles one being slighty smaller than the other */
+.square.circle::before{
+    width: var(--mark-size);
+    height: var(--mark-size);
+    background-color: black;
+}
+/* Order here is important the white circle is put on after the black circle to create the right look */
+.square.circle::after{
+    width: calc(var(--mark-size) * .6);
+    height: calc(var(--mark-size)* .6);
+    background-color: white;
+}
+
+.square.circle,
+.square.x{
+    /* this prevents the cursor from showing up on squares we have put a mark on */
+    cursor: not-allowed;
+}
+/* by default with display none our win message is hidden */
+.win-message{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0, .7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    color:white;
+    font-size: 5rem;
+    /* this stacks our text on top of our restart button */
+    flex-direction: column;
+
+}
+/* adding some styles to our win message button */
+.win-message button{
+    font-size: xx-large;
+    background-color: white;
+    cursor: pointer;
+}
+/* by adding the class "show" to our win message div we can make our win message appear */
+.win-message.show{
+    display: flex;
+}
