@@ -30,7 +30,7 @@ body{
     justify-content: center;
     align-content: center;
     
-
+    /* sets up the grid for 3x3 with automatic spacing  */
     grid-template-columns: repeat(3, auto);
     grid-template-columns: repeat(3, auto);
 
@@ -105,6 +105,7 @@ body{
 .square.circle::after{
      /* the above pseudo selectors do not function without some content */
      content: "";
+     /* this makes our marks circles */
      border-radius: 50%;
      position: absolute;
 }
